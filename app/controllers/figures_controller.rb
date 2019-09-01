@@ -23,7 +23,7 @@ class FiguresController < ApplicationController
     end
 
     @figure.save
-    redirect to "/figures/#{@figure.id}"
+    redirect "/figures/#{@figure.id}"
   end
   
   get '/figures/:id' do
@@ -37,7 +37,7 @@ class FiguresController < ApplicationController
   end
 
   patch '/figures/:id' do
-    @figure = Figure.find_by_id(params[:id])
+    @figure = Figure.find(params[:id])
     @figure.update(params[:figure])
     unless params[:title][:name].empty?
       @figure.titles << Title.create(params[:title])
